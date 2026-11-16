@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -98,22 +97,30 @@ public class GameMaster {
     }
 
     public boolean checkResistance(String type1, String type2) {
-        if (Objects.equals(type1, "Fairy")) {
-            return Objects.equals(type2, "Dragon");
-        } else if (Objects.equals(type1, "Ghost")) {
-            return Objects.equals(type2, "Fairy");
+        if (type1.equals("Human") || type2.equals("Human"))
+            return false;
+
+        if (type1.equals("Fairy")) {
+            return type2.equals("Dragon");
+        } else if (type1.equals("Ghost")) {
+            return type2.equals("Fairy");
         } else { // Dragon
-            return Objects.equals(type2, "Ghost");
+            return type2.equals("Ghost");
         }
     }
 
     public boolean checkWeakness(String type1, String type2) {
-        if (Objects.equals(type1, "Dragon")) {
-            return Objects.equals(type2, "Fairy");
-        } else if (Objects.equals(type1, "Fairy")) {
-            return Objects.equals(type2, "Ghost");
+        if (type1.equals("Human") && type2.equals("Human"))
+            return false;
+        if (type1.equals("Human") || type2.equals("Human"))
+            return true;
+
+        if (type1.equals("Dragon")) {
+            return type2.equals("Fairy");
+        } else if (type1.equals("Fairy")) {
+            return type2.equals("Ghost");
         } else { // Ghost
-            return Objects.equals(type2, "Dragon");
+            return type2.equals("Dragon");
         }
     }
 
